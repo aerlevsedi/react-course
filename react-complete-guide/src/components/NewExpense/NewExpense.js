@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ExpenseForm from './ExpenseForm';
 
+import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
 
 const NewExpense = (props) => {
@@ -11,8 +11,8 @@ const NewExpense = (props) => {
       ...enteredExpenseData,
       id: Math.random().toString(),
     };
-
     props.onAddExpense(expenseData);
+    setIsEditing(false);
   };
 
   const startEditingHandler = () => {
@@ -26,7 +26,7 @@ const NewExpense = (props) => {
   return (
     <div className='new-expense'>
       {!isEditing && (
-        <button onClick={startEditingHandler}> Add New Expense</button>
+        <button onClick={startEditingHandler}>Add New Expense</button>
       )}
       {isEditing && (
         <ExpenseForm

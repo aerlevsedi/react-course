@@ -3,61 +3,55 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
-  const [enteredTitle, setEneteredTitle] = useState('');
-  const [enteredAmount, setEneteredAmount] = useState('');
-  const [enteredDate, setEneteredDate] = useState('');
-
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
   // const [userInput, setUserInput] = useState({
-  //   eneteredTitle: '',
-  //   enteredAmout: '',
+  //   enteredTitle: '',
+  //   enteredAmount: '',
   //   enteredDate: '',
   // });
 
-  // const titleChangeHandler = (event) => {
-  //   setUserInput((prevState) => {
-  //     return { ...prevState, eneteredTitle: event.target.value };
-  //   });
-  // };
-
-  // const amountChangeHandler = (event) => {
-  //   setUserInput((prevState) => {
-  //     return { ...prevState, eneteredAmount: event.target.value };
-  //   });
-  // };
-
-  // const dateChangeHandler = (event) => {
-  //   setUserInput((prevState) => {
-  //     return { ...prevState, eneteredDate: event.target.value };
-  //   });
-  // };
-
   const titleChangeHandler = (event) => {
-    setEneteredTitle(event.target.value);
+    setEnteredTitle(event.target.value);
+    // setUserInput({
+    //   ...userInput,
+    //   enteredTitle: event.target.value,
+    // });
+    // setUserInput((prevState) => {
+    //   return { ...prevState, enteredTitle: event.target.value };
+    // });
   };
 
   const amountChangeHandler = (event) => {
-    setEneteredAmount(event.target.value);
+    setEnteredAmount(event.target.value);
+    // setUserInput({
+    //   ...userInput,
+    //   enteredAmount: event.target.value,
+    // });
   };
 
   const dateChangeHandler = (event) => {
-    setEneteredDate(event.target.value);
+    setEnteredDate(event.target.value);
+    // setUserInput({
+    //   ...userInput,
+    //   enteredDate: event.target.value,
+    // });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const epxenseData = {
+
+    const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
 
-    props.onSaveExpenseData(epxenseData);
-
-    setEneteredTitle('');
-    setEneteredAmount('');
-    setEneteredDate('');
-
-    console.log(epxenseData);
+    props.onSaveExpenseData(expenseData);
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
   };
 
   return (
@@ -75,9 +69,9 @@ const ExpenseForm = (props) => {
           <label>Amount</label>
           <input
             type='number'
-            value={enteredAmount}
             min='0.01'
             step='0.01'
+            value={enteredAmount}
             onChange={amountChangeHandler}
           />
         </div>
@@ -85,9 +79,9 @@ const ExpenseForm = (props) => {
           <label>Date</label>
           <input
             type='date'
-            value={enteredDate}
             min='2019-01-01'
             max='2022-12-31'
+            value={enteredDate}
             onChange={dateChangeHandler}
           />
         </div>
